@@ -1,0 +1,13 @@
+{
+  "extends": "./packages/config-typescript/base.json",
+  "compilerOptions": {
+    "baseUrl": "."
+  },
+  "references": [
+    { "path": "./packages/portfolio-content" },
+    { "path": "./packages/state" },
+    { "path": "./packages/ui" },
+    { "path": "./packages/galaxy-engine" },
+    { "path": "./apps/web" }
+  ]
+}
