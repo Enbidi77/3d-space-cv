@@ -10,7 +10,6 @@ export interface CelestialLabelProps {
   subtitle?: string;
   iconName?: string;
   accentColor?: string;
-  distanceFactor?: number;
   position?: [number, number, number];
   onClick?: () => void;
 }
@@ -41,6 +40,21 @@ export const CelestialLabel: React.FC<CelestialLabelProps> = ({
     };
   }, [hovered]);
 
+  const pillWidth = Math.max(2.8, title.length * 0.22 + 1.2);
+  const pillHeight = subtitle ? 0.95 : 0.65;
+
+  // Use EdgesGeometry to ensure clean 4-side perimeter without diagonal wireframe triangulation
+  const borderLines = React.useMemo(() => {
+    const planeGeo = new THREE.PlaneGeometry(pillWidth, pillHeight);
+    const edges = new THREE.EdgesGeometry(planeGeo);
+    const mat = new THREE.LineBasicMaterial({
+      color: isSelected || hovered ? accentColor : '#334155',
+      transparent: true,
+      opacity: isSelected || hovered ? 0.9 : 0.45,
+    });
+    return new THREE.LineSegments(edges, mat);
+  }, [pillWidth, pillHeight, isSelected, hovered, accentColor]);
+
   if (!showCelestialLabels) return null;
 
   const handleClick = (e: any) => {
@@ -52,9 +66,7 @@ export const CelestialLabel: React.FC<CelestialLabelProps> = ({
     }
   };
 
-  const scale = hovered || isSelected ? 1.15 : 1.0;
-  const pillWidth = Math.max(3.2, title.length * 0.22 + 1.2);
-  const pillHeight = subtitle ? 1.0 : 0.7;
+  const scale = hovered || isSelected ? 1.12 : 1.0;
 
   return (
     <group position={position}>
@@ -82,20 +94,12 @@ export const CelestialLabel: React.FC<CelestialLabelProps> = ({
             />
           </mesh>
 
-          {/* Border Glow Wireframe */}
-          <mesh position={[0, 0, 0.01]}>
-            <planeGeometry args={[pillWidth + 0.08, pillHeight + 0.08]} />
-            <meshBasicMaterial
-              color={isSelected || hovered ? accentColor : '#334155'}
-              wireframe
-              transparent
-              opacity={isSelected || hovered ? 0.9 : 0.4}
-            />
-          </mesh>
+          {/* Clean 4-side Border Perimeter */}
+          <primitive object={borderLines} position={[0, 0, 0.01]} />
 
           {/* Glowing Ping Dot */}
-          <mesh position={[-pillWidth / 2 + 0.4, subtitle ? 0.15 : 0, 0.02]}>
-            <circleGeometry args={[0.08, 16]} />
+          <mesh position={[-pillWidth / 2 + 0.35, subtitle ? 0.12 : 0, 0.02]}>
+            <circleGeometry args={[0.07, 16]} />
             <meshBasicMaterial
               color={accentColor}
               toneMapped={false}
@@ -104,12 +108,12 @@ export const CelestialLabel: React.FC<CelestialLabelProps> = ({
 
           {/* Title Text */}
           <Text
-            position={[-pillWidth / 2 + 0.65, subtitle ? 0.15 : 0, 0.03]}
+            position={[-pillWidth / 2 + 0.58, subtitle ? 0.12 : 0, 0.03]}
             anchorX="left"
             anchorY="middle"
-            fontSize={0.28}
+            fontSize={0.24}
             color={isSelected || hovered ? accentColor : '#f1f5f9'}
-            letterSpacing={0.05}
+            letterSpacing={0.06}
           >
             {title.toUpperCase()}
           </Text>
@@ -117,10 +121,10 @@ export const CelestialLabel: React.FC<CelestialLabelProps> = ({
           {/* Subtitle Text */}
           {subtitle && (
             <Text
-              position={[-pillWidth / 2 + 0.65, -0.2, 0.03]}
+              position={[-pillWidth / 2 + 0.58, -0.18, 0.03]}
               anchorX="left"
               anchorY="middle"
-              fontSize={0.16}
+              fontSize={0.14}
               color="#94a3b8"
               letterSpacing={0.02}
             >
