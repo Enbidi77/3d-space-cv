@@ -54,8 +54,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark scroll-smooth">
-      <body className="min-h-screen bg-[#030712] text-slate-100 antialiased selection:bg-cyan-500/30 selection:text-white">
+    <html
+      lang="en"
+      className="dark scroll-smooth"
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+    >
+      <body
+        suppressHydrationWarning
+        className="min-h-screen bg-[#030712] text-slate-100 antialiased selection:bg-cyan-500/30 selection:text-white"
+      >
         {/* Accessible Skip Link */}
         <a
           href="#main-content"
