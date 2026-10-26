@@ -17,6 +17,7 @@ export const HeroIntroOverlay: React.FC = () => {
       <div className="absolute top-24 left-6 z-20 pointer-events-auto">
         <button
           type="button"
+          suppressHydrationWarning
           onClick={() => setMinimized(false)}
           className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-950/80 backdrop-blur-md border border-slate-800 text-xs font-medium text-slate-300 hover:text-white hover:border-cyan-500/50 transition-all shadow-lg"
         >
@@ -118,6 +119,7 @@ export const HeroIntroOverlay: React.FC = () => {
           <span>Click anywhere in space to navigate or rotate</span>
           <button
             type="button"
+            suppressHydrationWarning
             onClick={() => setMinimized(true)}
             className="text-cyan-400 hover:text-cyan-300 underline underline-offset-4"
           >

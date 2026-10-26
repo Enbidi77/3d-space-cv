@@ -29,6 +29,7 @@ export const CopyButton: React.FC<CopyButtonProps> = ({
   return (
     <button
       type="button"
+      suppressHydrationWarning
       onClick={handleCopy}
       aria-label={`Copy ${label} to clipboard`}
       className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium border transition-all duration-200 ${

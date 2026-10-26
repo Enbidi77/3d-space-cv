@@ -35,6 +35,7 @@ export const Tabs: React.FC<TabsProps> = ({
           <button
             key={tab.id}
             role="tab"
+            suppressHydrationWarning
             aria-selected={isActive}
             onClick={() => onChange(tab.id)}
             className={cn(

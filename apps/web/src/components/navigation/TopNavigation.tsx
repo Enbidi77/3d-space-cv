@@ -99,6 +99,7 @@ export const TopNavigation: React.FC = () => {
             {/* View Mode Toggle (3D vs 2D) */}
             <button
               type="button"
+              suppressHydrationWarning
               onClick={() => setViewMode(viewMode === '3d' ? 'conventional' : '3d')}
               title={`Switch to ${viewMode === '3d' ? '2D Sector View' : '3D Galaxy'}`}
               className="p-2 rounded-xl text-slate-400 hover:text-white bg-slate-900/60 hover:bg-slate-800/80 border border-slate-800 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
@@ -110,6 +111,7 @@ export const TopNavigation: React.FC = () => {
             {/* Audio Toggle */}
             <button
               type="button"
+              suppressHydrationWarning
               onClick={toggleSound}
               title={isSoundEnabled ? 'Mute ambient sound' : 'Enable ambient sound'}
               className="p-2 rounded-xl text-slate-400 hover:text-white bg-slate-900/60 hover:bg-slate-800/80 border border-slate-800 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
@@ -132,6 +134,7 @@ export const TopNavigation: React.FC = () => {
             {/* Mobile Menu Button */}
             <button
               type="button"
+              suppressHydrationWarning
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label="Toggle mobile menu"
               className="lg:hidden p-2 rounded-xl text-slate-400 hover:text-white bg-slate-900/60 border border-slate-800"
@@ -171,6 +174,7 @@ export const TopNavigation: React.FC = () => {
 
             <button
               type="button"
+              suppressHydrationWarning
               onClick={() => {
                 setActiveOverlay('cv-modal');
                 setMobileOpen(false);

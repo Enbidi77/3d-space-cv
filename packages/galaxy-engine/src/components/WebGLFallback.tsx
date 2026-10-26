@@ -43,6 +43,7 @@ export const WebGLFallback: React.FC = () => {
             return (
               <button
                 key={dest.id}
+                suppressHydrationWarning
                 onClick={() => setDestination(dest.id as DestinationId)}
                 className={`p-4 rounded-xl text-left border transition-all duration-200 ${
                   isSelected

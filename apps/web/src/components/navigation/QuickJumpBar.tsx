@@ -53,6 +53,7 @@ export const QuickJumpBar: React.FC = () => {
           <Tooltip key={item.id} content={item.label} side="top">
             <button
               type="button"
+              suppressHydrationWarning
               onClick={() => handleNavigate(item.id, item.href)}
               aria-label={`Jump to ${item.label}`}
               aria-pressed={isSelected}

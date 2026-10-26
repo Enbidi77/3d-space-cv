@@ -50,6 +50,7 @@ export const CelestialLabel: React.FC<CelestialLabelProps> = ({
     >
       <button
         type="button"
+        suppressHydrationWarning
         onClick={handleClick}
         aria-label={`Navigate to ${title}`}
         style={{
