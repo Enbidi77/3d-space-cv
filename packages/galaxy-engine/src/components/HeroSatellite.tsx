@@ -236,3 +236,4 @@ export const HeroSatellite: React.FC = () => {
     </group>
   );
 };
+
